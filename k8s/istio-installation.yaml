@@ -35,17 +35,13 @@ spec:
           limits:
             cpu: 500m
             memory: 4G
-
     pilot:
       autoscaleEnabled: false
       traceSampling: 100
-
     kiali:
       enabled: true
-
     grafana:
       enabled: true
-
     tracing:
       enabled: true
       jaeger:

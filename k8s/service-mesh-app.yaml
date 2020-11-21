@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: bookinfo-service-mesh
+  name: sa-service-mesh
   labels:
     account: service-mesh
 ---
@@ -38,10 +38,57 @@ spec:
         app: service-mesh
         version: v1
     spec:
-      serviceAccountName: bookinfo-service-mesh
+      serviceAccountName: sa-service-mesh
       containers:
-      - name: service-mesh
-        image: docker.io/cmwylie19/service-mesh:light
+      - env:
+        - name: REACT_APP_THEME
+          value: light
+        name: service-mesh
+        image: docker.io/cmwylie19/service-mesh:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-mesh-v2
+  labels:
+    app: service-mesh
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-mesh
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: service-mesh
+        version: v2
+    spec:
+      serviceAccountName: sa-service-mesh
+      containers:
+      - env:
+        - name: REACT_APP_THEME
+          value: dark
+        name: service-mesh
+        image: docker.io/cmwylie19/service-mesh:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: service-mesh
+spec:
+  host: service-mesh
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2

@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: casewylie-gateway
+  name: ig-casewylie
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -16,26 +16,44 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: casewylie
+  name: vs-casewylie
 spec:
   hosts:
   - "*"
   gateways:
-  - casewylie-gateway
+  - ig-casewylie
   http:
   - match:
     - uri:
-        exact: /productpage
+        exact: /light
     - uri:
         prefix: /static
     - uri:
         exact: /login
-    - uri:
-        exact: /logout
-    - uri:
-        prefix: /api/v1/products
     route:
     - destination:
         host: service-mesh
+        subset: v1
         port:
           number: 3000
+# - apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: vs-casewylie
+# spec:
+#   hosts:
+#   - "*"
+#   gateways:
+#   - ig-casewylie
+#   http:
+#   - match:
+#     - uri:
+#         exact: /dark
+#     - uri:
+#         prefix: /black
+#     route:
+#     - destination:
+#         host: service-mesh
+#         subset: v2
+#         port:
+#           number: 3000
