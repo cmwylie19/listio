@@ -44,8 +44,8 @@ spec:
         - name: REACT_APP_THEME
           value: light
         name: service-mesh
-        image: docker.io/cmwylie19/service-mesh:latest
-        imagePullPolicy: IfNotPresent
+        image: docker.io/cmwylie19/service-mesh:light
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 ---
@@ -74,8 +74,8 @@ spec:
         - name: REACT_APP_THEME
           value: dark
         name: service-mesh
-        image: docker.io/cmwylie19/service-mesh:latest
-        imagePullPolicy: IfNotPresent
+        image: docker.io/cmwylie19/service-mesh:dark
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 ---
