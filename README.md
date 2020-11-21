@@ -1,1 +1,2 @@
-![Node.js CI](https://github.com/cmwylie19/service-mesh/workflows/Node.js%20CI/badge.svg)
+![Node.js CI](https://github.com/cmwylie19/service-mesh/workflows/Node.js%20CI/badge.svg)    
+[![codecov](https://codecov.io/gh/cmwylie19/service-mesh/branch/master/graph/badge.svg?token=QOB0YLAC7G)](https://codecov.io/gh/cmwylie19/service-mesh)
