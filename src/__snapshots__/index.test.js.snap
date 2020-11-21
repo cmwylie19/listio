@@ -2,31 +2,20 @@
 
 exports[` 1`] = `
 <div
-  className="App"
+  style={
+    Object {
+      "backgroundColor": "black",
+      "bottom": 0,
+      "display": "flex",
+      "height": "100%vh !important",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+      "width": "100%",
+    }
+  }
 >
-  <header
-    className="App-header"
-  >
-    <img
-      alt="logo"
-      className="App-logo"
-      src="logo.svg"
-    />
-    <p>
-      Edit 
-      <code>
-        src/App.js
-      </code>
-       and save to reload.
-    </p>
-    <a
-      className="App-link"
-      href="https://reactjs.org"
-      rel="noopener noreferrer"
-      target="_blank"
-    >
-      Learn React
-    </a>
-  </header>
+  asdfasdf
 </div>
 `;

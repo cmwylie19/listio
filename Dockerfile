@@ -1,12 +1,7 @@
-FROM node:10 AS builder
-WORKDIR /app
+FROM node:10
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
 COPY . .
-ARG theme
-RUN yarn install 
-RUN REACT_APP_THEME=$theme yarn build
-
-FROM nginx:alpine
-WORKDIR /usr/share/nginx/html
-RUN rm -rf ./*
-COPY --from=builder /app/build .
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+CMD [ "npm", "start" ]
