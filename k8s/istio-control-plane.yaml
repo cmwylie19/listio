@@ -13,7 +13,7 @@ spec:
       istio-ingressgateway:
         autoscaleEnabled: false
 
-        # Enable automatic OCP Route creation for Istio Gateway hosts 
+        # Enable automatic OCP Route creation for Istio Gateway hosts
         ior_enabled: true
     mixer:
       policy:
@@ -40,10 +40,9 @@ metadata:
   namespace: casewylie
 spec:
   members:
-  - casewylie
+    - casewylie
 ---
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
 metadata:
   name: istio-cni
-  

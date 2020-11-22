@@ -7,9 +7,7 @@ import { indexRender } from "./index";
 jest.mock("react-dom", () => ({ render: jest.fn() }));
 
 describe("Application root", () => {
-  let wrapper = shallow(
-      <App load={true} />
-  );
+  let wrapper = shallow(<App load={true} />);
   it("should render without crashing", () => {
     const div = document.createElement("div");
     div.id = "root";

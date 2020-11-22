@@ -1,21 +1,74 @@
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  const styles = {
-      display: 'flex',
-      height: '100%vh !important',
-      position: 'absolute',
-      top:0,
-      bottom:0,
-      left:0,
-      right:0,
-      width:"100%",
-      backgroundColor:process.env.REACT_APP_THEME=="light"?"white":"black"
+import db from "./db";
+import AddTodo from "./AddTodo";
+import TodoList from "./TodoList";
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = { todos: [] };
+    this.handleAddTodo = this.handleAddTodo.bind(this);
+    this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
+    this.handleToggleTodo = this.handleToggleTodo.bind(this);
   }
-  return (
-    <div style={styles}>
-     asdfasdf
-    </div>
-  );
+
+  componentDidMount() {
+    db.table("todos")
+      .toArray()
+      .then(todos => {
+        this.setState({ todos });
+      });
+  }
+
+  handleAddTodo(title) {
+    const todo = {
+      title,
+      done: false
+    };
+    db.table("todos")
+      .add(todo)
+      .then(id => {
+        const newList = [...this.state.todos, Object.assign({}, todo, { id })];
+        this.setState({ todos: newList });
+      });
+  }
+
+  handleToggleTodo(id, done) {
+    db.table("todos")
+      .update(id, { done })
+      .then(() => {
+        const todoToUpdate = this.state.todos.find(todo => todo.id === id);
+        const newList = [
+          ...this.state.todos.filter(todo => todo.id !== id),
+          Object.assign({}, todoToUpdate, { done })
+        ];
+        this.setState({ todos: newList });
+      });
+  }
+
+  handleDeleteTodo(id) {
+    db.table("todos")
+      .delete(id)
+      .then(() => {
+        const newList = this.state.todos.filter(todo => todo.id !== id);
+        this.setState({ todos: newList });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <AddTodo handleAddTodo={this.handleAddTodo} />
+        <TodoList
+          todos={this.state.todos}
+          handleToggleTodo={this.handleToggleTodo}
+          handleDeleteTodo={this.handleDeleteTodo}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;

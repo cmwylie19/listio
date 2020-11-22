@@ -7,8 +7,8 @@ metadata:
     service: service-mesh
 spec:
   ports:
-  - port: 3000
-    name: http
+    - port: 3000
+      name: http
   selector:
     app: service-mesh
 ---
@@ -40,14 +40,16 @@ spec:
     spec:
       serviceAccountName: sa-service-mesh
       containers:
-      - env:
-        - name: REACT_APP_THEME
-          value: light
-        name: service-mesh
-        image: docker.io/cmwylie19/service-mesh:light
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
+        - env:
+            - name: REACT_APP_TEST
+              value: report-service
+            - name: REACT_APP_THEME
+              value: light
+          name: service-mesh
+          image: docker.io/cmwylie19/service-mesh:light
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -70,14 +72,16 @@ spec:
     spec:
       serviceAccountName: sa-service-mesh
       containers:
-      - env:
-        - name: REACT_APP_THEME
-          value: dark
-        name: service-mesh
-        image: docker.io/cmwylie19/service-mesh:dark
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
+        - env:
+            - name: REACT_APP_TEST
+              value: report-service
+            - name: REACT_APP_THEME
+              value: dark
+          name: service-mesh
+          image: docker.io/cmwylie19/service-mesh:dark
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
@@ -86,9 +90,9 @@ metadata:
 spec:
   host: service-mesh
   subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
