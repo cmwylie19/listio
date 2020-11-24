@@ -1,21 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[` 1`] = `
-<div
-  style={
-    Object {
-      "backgroundColor": "black",
-      "bottom": 0,
-      "display": "flex",
-      "height": "100%vh !important",
-      "left": 0,
-      "position": "absolute",
-      "right": 0,
-      "top": 0,
-      "width": "100%",
-    }
-  }
->
-  asdfasdf
-</div>
+<Fragment>
+  <AddTodo
+    handleAddTodo={[Function]}
+  />
+  <TodoList
+    handleDeleteTodo={[Function]}
+    handleToggleTodo={[Function]}
+    todos={Array []}
+  />
+</Fragment>
 `;

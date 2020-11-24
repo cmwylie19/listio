@@ -1,8 +1,24 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "./AddTodo";
+import { shallow, mount } from "enzyme";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/asdfasd/i);
-  expect(linkElement).toBeInTheDocument();
+describe("AddTodo Test", () => {
+  it("should mount", () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper).toBeDefined();
+    wrapper.unmount();
+  });
+
+  // it('should call mockFunction on button click', () => {
+  //   const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />)
+  //   wrapper.find("button").first().simulate("click")
+  //   expect(handleAddTodo).toHaveBeenCalled();
+  //   wrapper.unmount();
+  // });
+
+  // it('should call mockFunction on button click', () => {
+  //   const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />)
+  //   console.log(JSON.stringify(wrapper))
+  //   wrapper.find("input").first().simulate("keydown",{value:22})
+  //   wrapper.unmount();
+  // });
 });

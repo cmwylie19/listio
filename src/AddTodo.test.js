@@ -1,40 +1,37 @@
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
+import AddTodo from "./AddTodo";
+import { shallow, mount } from "enzyme";
 
-class AddTodo extends Component {
-  constructor(props) {
-    super();
-    this.state = { value: "" };
-    this.addTodo = this.addTodo.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+let wrapper;
+let handleAddTodo = jest.fn();
+let handleSetValue = jest.fn();
+beforeEach(() => {});
 
-  addTodo() {
-    this.props.handleAddTodo(this.state.value);
-  }
+const mockFunction = jest.fn();
 
-  handleChange(newValue) {
-    this.setState({ value: newValue });
-  }
+describe("AddTodo Test", () => {
+  it("should mount", () => {
+    const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
+    expect(wrapper).toBeDefined();
+    wrapper.unmount();
+  });
 
-  render() {
-    return (
-      <div>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={e => this.handleChange(e.target.value)}
-        />
-        <button type="button" onClick={this.addTodo}>
-          Add Todo
-        </button>
-      </div>
-    );
-  }
-}
+  it("should call mockFunction on button click", () => {
+    const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
+    wrapper
+      .find("button")
+      .first()
+      .simulate("click");
+    expect(handleAddTodo).toHaveBeenCalled();
+    wrapper.unmount();
+  });
 
-AddTodo.propTypes = {
-  handleAddTodo: PropTypes.func.isRequired
-};
-
-export default AddTodo;
+  it("should call mockFunction on button click", () => {
+    const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
+    console.log(JSON.stringify(wrapper));
+    wrapper
+      .find("input")
+      .first()
+      .simulate("keydown", { value: 22 });
+    wrapper.unmount();
+  });
+});
