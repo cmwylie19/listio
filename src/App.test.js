@@ -1,4 +1,4 @@
-import App from "./AddTodo";
+import App from "./App";
 import { shallow, mount } from "enzyme";
 
 describe("AddTodo Test", () => {
@@ -7,18 +7,4 @@ describe("AddTodo Test", () => {
     expect(wrapper).toBeDefined();
     wrapper.unmount();
   });
-
-  // it('should call mockFunction on button click', () => {
-  //   const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />)
-  //   wrapper.find("button").first().simulate("click")
-  //   expect(handleAddTodo).toHaveBeenCalled();
-  //   wrapper.unmount();
-  // });
-
-  // it('should call mockFunction on button click', () => {
-  //   const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />)
-  //   console.log(JSON.stringify(wrapper))
-  //   wrapper.find("input").first().simulate("keydown",{value:22})
-  //   wrapper.unmount();
-  // });
 });

@@ -17,6 +17,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "precommit": "cross-env CI=true react-scripts test --env=jsdom --findRelatedTests",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test -u --watchAll=false --silent --coverage --bail",
