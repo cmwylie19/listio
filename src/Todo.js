@@ -9,7 +9,8 @@ import Avatar from "@material-ui/core/Avatar";
 import Switch from "@material-ui/core/Switch";
 import Typography from "@material-ui/core/Typography";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-
+import { green, orange } from "@material-ui/core/colors";
+import CancelIcon from "@material-ui/icons/Cancel";
 const useStyles = makeStyles(theme => ({
   subheader: {
     backgroundColor: theme.palette.background.paper
@@ -31,22 +32,20 @@ export default function Todo({
 
   return (
     <React.Fragment key={id}>
-      {id % 2 == 0 && (
+      {/* {id % 2 == 0 && (
         <ListSubheader className={classes.subheader}>Today</ListSubheader>
       )}
       {id % 2 !== 0 && (
         <ListSubheader className={classes.subheader}>Yesterday</ListSubheader>
-      )}
+      )} */}
       <ListItem button>
         <ListItemAvatar>
-          <Avatar alt="Profile Picture" src={person} />
+          {/* <Avatar alt="Profile Picture" src={CheckCircleIcon} /> */}
+          {done && <CheckCircleIcon style={{ color: green[500] }} />}
+          {!done && <CheckCircleIcon style={{ color: orange[500] }} />}
         </ListItemAvatar>
-        <ListItemText primary={"TSTTST"} secondary={title} />
-        {done && (
-          <Typography variant="p" gutterBottom>
-            <CheckCircleIcon color="primary" /> {Date.now()}
-          </Typography>
-        )}
+        <ListItemText primary={""} secondary={title} />
+
         <Switch
           checked={done}
           onChange={e => handleToggleTodo(id, !done)}

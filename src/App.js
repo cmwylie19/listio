@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Switch from "@material-ui/core/Switch";
+
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(1, 1, 0),
@@ -55,6 +56,7 @@ export default function App({
     return fetchTodosFromDB(db).then(storedTodos => setTodos(storedTodos));
   }, [todos]);
 
+   /*istanbul ignore next*/
   return (
     <>
       <CssBaseline />
@@ -83,7 +85,7 @@ export default function App({
             )}
           </Typography>
         </AppBar>
-
+       
         <TodoList
           todos={todos}
           handleToggleTodo={(id, done) =>

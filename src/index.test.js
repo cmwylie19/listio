@@ -6,14 +6,13 @@ import { indexRender, Root } from "./index";
 
 jest.mock("react-dom", () => ({ render: jest.fn() }));
 
-describe("Root",()=>{
+describe("Root", () => {
   it("should mount", () => {
     const wrapper = shallow(<Root />);
     expect(wrapper).toBeDefined();
     wrapper.unmount();
   });
-
-})
+});
 describe("Application root", () => {
   let wrapper = shallow(<App load={true} />);
   it("should render without crashing", () => {
