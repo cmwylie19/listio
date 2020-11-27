@@ -32,6 +32,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+export const handleAdd = (handleAddTodo, clearText) => {
+  handleAddTodo();
+  clearText();
+}
 const AddTodo = ({ handleAddTodo }) => {
   const [value, setValue] = useState("");
   const classes = useStyles();
@@ -43,7 +47,7 @@ const AddTodo = ({ handleAddTodo }) => {
           <MenuIcon />
         </IconButton>
         <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-          <AddIcon id="addtodo-button" onClick={() => handleAddTodo(value)} />
+          <AddIcon id="addtodo-button" onClick={()=>handleAdd(() => handleAddTodo(value),()=>setValue(""))} />
         </Fab>
         <TextField
           style={{ width: "90%", paddingBottom: "10px" }}

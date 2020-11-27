@@ -2,80 +2,28 @@ import React, { useState, useEffect } from "react";
 import AddTodo from "./AddTodo";
 import TodoList from "./TodoList";
 import DigitalClock from "./DigitalClock";
-
-// const App = ({ db, handleToggleTodo, handleDeleteTodo, handleAddTodo }) => {
-//   const [todos, setTodos] = useState([]);
-
-// /*istanbul ignore next*/
-// useEffect(() => {
-//   return db
-//     .table("todos")
-//     .toArray()
-//     .then(todos => {
-//       setTodos(todos);
-//     });
-// });
-
-//   return (
-//     <>
-//       <DigitalClock />
-
-// <TodoList
-//   todos={todos}
-//   handleToggleTodo={(id, done) =>
-//     handleToggleTodo(id, done, todos, setTodos)
-//   }
-//   handleDeleteTodo={id => handleDeleteTodo(id, todos, setTodos)}
-// />
-
-//       <AddTodo handleAddTodo={title => handleAddTodo(title, todos, setTodos)} />
-//     </>
-//   );
-// };
-// export default App;
-
 import { makeStyles } from "@material-ui/core/styles";
-
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
-import Fab from "@material-ui/core/Fab";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
-import AddIcon from "@material-ui/icons/Add";
-import SearchIcon from "@material-ui/icons/Search";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import TextField from "@material-ui/core/TextField";
+import AppBar from "@material-ui/core/AppBar";
 
 const useStyles = makeStyles(theme => ({
   text: {
-    padding: theme.spacing(2, 2, 0),
-    textAlign: "center"
+    padding: theme.spacing(1, 1, 0),
+    textAlign: "center",
+    // display:"flex",
+    // justifyContent: 'space-between'
   },
   paper: {
-    paddingBottom: 50
-  },
-  list: {
-    marginBottom: theme.spacing(2)
-  },
-  subheader: {
-    backgroundColor: theme.palette.background.paper
+    paddingBottom: 50,
+    marginTop: 50
   },
   appBar: {
-    top: "auto",
-    bottom: 0
-  },
-  toolbar: {
-    display: "flex",
-    flex: 1,
-    width: "100%vw"
+    backgroundColor: theme.palette.secondary.main,
+    top: 0,
+    bottom: "auto",
+    height:"59px"
   },
   grow: {
     flexGrow: 1
@@ -92,31 +40,31 @@ const useStyles = makeStyles(theme => ({
 
 export default function App({
   db,
+  fetchTodosFromDB,
   handleToggleTodo,
   handleDeleteTodo,
   handleAddTodo
 }) {
   const classes = useStyles();
   const [todos, setTodos] = useState([]);
-  const [tempTodo, setTempTodo] = useState("");
-  /*istanbul ignore next*/
+  const [clock,setClock] = useState(false)
 
+
+  /*istanbul ignore next*/
   useEffect(() => {
-    return db
-      .table("todos")
-      .toArray()
-      .then(todos => {
-        setTodos(todos);
-      });
+    return fetchTodosFromDB(db).then(storedTodos => setTodos(storedTodos));
   }, [todos]);
 
   return (
     <>
       <CssBaseline />
       <Paper square className={classes.paper}>
-        <Typography className={classes.text} variant="h5" gutterBottom>
-          <DigitalClock />
-        </Typography>
+        <AppBar className={classes.appBar} onMouseOut={()=>setTimeout(()=>setClock(false),300)} onMouseOver={()=>setTimeout(()=>setClock(true),300)}>
+          <Typography className={classes.text} variant="h5" gutterBottom >
+          {!clock && <img src="logo64.png" height="45px" style={{margin:"0px"}}   />}
+          {clock && <div style={{display:"flex",height:"100%",justifyContent:"center",alignItems:"center"}}> <DigitalClock  /></div> }
+          </Typography>
+        </AppBar>
         <TodoList
           todos={todos}
           handleToggleTodo={(id, done) =>

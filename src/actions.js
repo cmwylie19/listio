@@ -1,6 +1,15 @@
 import db from "./db";
 
 /*istanbul ignore next*/
+export const fetchTodosFromDB = db => {
+  return new Promise((resolve, reject) => {
+    return db
+      .table("todos")
+      .toArray()
+      .then(todos => resolve(todos));
+  });
+};
+/*istanbul ignore next*/
 export const handleAddTodo = (title, todos, setTodos, cb) => {
   const todo = {
     title,

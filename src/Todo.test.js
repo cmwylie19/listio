@@ -38,7 +38,7 @@ describe("AddTodo Test", () => {
       />
     );
     wrapper
-      .find("button")
+      .find("#delete-button")
       .first()
       .simulate("click");
     expect(mockHandleDeleteTodo).toHaveBeenCalled();

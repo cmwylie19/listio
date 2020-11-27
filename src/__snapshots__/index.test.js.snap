@@ -7,13 +7,27 @@ exports[` 1`] = `
     className="makeStyles-paper-2"
     square={true}
   >
-    <WithStyles(ForwardRef(Typography))
-      className="makeStyles-text-1"
-      gutterBottom={true}
-      variant="h5"
+    <WithStyles(ForwardRef(AppBar))
+      className="makeStyles-appBar-3"
     >
-      <DigitalClock />
-    </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        className="makeStyles-text-1"
+        gutterBottom={true}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        variant="h5"
+      >
+        <img
+          height="45px"
+          src="logo64.png"
+          style={
+            Object {
+              "padding": "0px",
+            }
+          }
+        />
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(AppBar))>
     <TodoList
       handleDeleteTodo={[Function]}
       handleToggleTodo={[Function]}

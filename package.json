@@ -26,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test -u --watchAll=false --silent --coverage --bail",
     "eject": "react-scripts eject",
-    "format": "npx prettier --write **/*"
+    "format": "npx prettier --write **/*.js **/__mocks__/*.js *.js"
   },
   "eslintConfig": {
     "extends": [

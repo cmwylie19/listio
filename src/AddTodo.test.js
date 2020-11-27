@@ -1,4 +1,4 @@
-import AddTodo from "./AddTodo";
+import AddTodo, {handleAdd} from "./AddTodo";
 import { shallow, mount } from "enzyme";
 
 let wrapper;
@@ -9,6 +9,14 @@ beforeEach(() => {});
 const mockFunction = jest.fn();
 
 describe("AddTodo Test", () => {
+  it('handleAdd should execute 2 functions',()=>{
+    let firstFunction = jest.fn()
+    let secondFunction = jest.fn().mockImplementation(()=>true);
+
+    handleAdd(()=>firstFunction(), ()=>secondFunction());
+    expect(firstFunction).toHaveBeenCalled();
+    expect(secondFunction).toHaveBeenCalled()
+  })
   it("should mount", () => {
     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
     expect(wrapper).toBeDefined();

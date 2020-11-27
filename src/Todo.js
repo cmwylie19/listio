@@ -6,7 +6,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Avatar from "@material-ui/core/Avatar";
-
+import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles(theme => ({
   subheader: {
@@ -37,12 +37,23 @@ export default function Todo({
           <Avatar alt="Profile Picture" src={person} />
         </ListItemAvatar>
         <ListItemText primary={"TSTTST"} secondary={title} />
+        <Switch
+        checked={done}
+        onChange={e => handleToggleTodo(id, !done)}
+        name="checkedA"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
         <input
           type="checkbox"
           checked={done}
           onChange={e => handleToggleTodo(id, !done)}
         />
-        <Button variant="contained" color="primary" onClick={() => handleDeleteTodo(id)}>
+        <Button
+          id="delete-button"
+          variant="contained"
+          color="primary"
+          onClick={() => handleDeleteTodo(id)}
+        >
           Delete
         </Button>
       </ListItem>
