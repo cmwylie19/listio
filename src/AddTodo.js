@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
 export const handleAdd = (handleAddTodo, clearText) => {
   handleAddTodo();
   clearText();
-}
-const AddTodo = ({ handleAddTodo }) => {
+};
+const AddTodo = ({ handleAddTodo, themeToggle }) => {
   const [value, setValue] = useState("");
   const classes = useStyles();
 
@@ -44,10 +44,18 @@ const AddTodo = ({ handleAddTodo }) => {
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <IconButton edge="start" color="inherit" aria-label="open drawer">
-          <MenuIcon />
+          {themeToggle}
         </IconButton>
         <Fab color="secondary" aria-label="add" className={classes.fabButton}>
-          <AddIcon id="addtodo-button" onClick={()=>handleAdd(() => handleAddTodo(value),()=>setValue(""))} />
+          <AddIcon
+            id="addtodo-button"
+            onClick={() =>
+              handleAdd(
+                () => handleAddTodo(value),
+                () => setValue("")
+              )
+            }
+          />
         </Fab>
         <TextField
           style={{ width: "90%", paddingBottom: "10px" }}

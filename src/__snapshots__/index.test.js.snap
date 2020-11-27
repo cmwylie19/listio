@@ -9,12 +9,12 @@ exports[` 1`] = `
   >
     <WithStyles(ForwardRef(AppBar))
       className="makeStyles-appBar-3"
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
       <WithStyles(ForwardRef(Typography))
         className="makeStyles-text-1"
         gutterBottom={true}
-        onMouseOut={[Function]}
-        onMouseOver={[Function]}
         variant="h5"
       >
         <img
@@ -22,7 +22,7 @@ exports[` 1`] = `
           src="logo64.png"
           style={
             Object {
-              "padding": "0px",
+              "margin": "0px",
             }
           }
         />
@@ -36,6 +36,7 @@ exports[` 1`] = `
   </WithStyles(ForwardRef(Paper))>
   <AddTodo
     handleAddTodo={[Function]}
+    themeToggle={<WithStyles(ForwardRef(Switch)) />}
   />
 </Fragment>
 `;

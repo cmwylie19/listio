@@ -2,10 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import { shallow } from "enzyme";
-import { indexRender } from "./index";
+import { indexRender, Root } from "./index";
 
 jest.mock("react-dom", () => ({ render: jest.fn() }));
 
+describe("Root",()=>{
+  it("should mount", () => {
+    const wrapper = shallow(<Root />);
+    expect(wrapper).toBeDefined();
+    wrapper.unmount();
+  });
+
+})
 describe("Application root", () => {
   let wrapper = shallow(<App load={true} />);
   it("should render without crashing", () => {

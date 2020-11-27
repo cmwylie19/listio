@@ -6,11 +6,16 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Avatar from "@material-ui/core/Avatar";
-import Switch from '@material-ui/core/Switch';
+import Switch from "@material-ui/core/Switch";
+import Typography from "@material-ui/core/Typography";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
 const useStyles = makeStyles(theme => ({
   subheader: {
     backgroundColor: theme.palette.background.paper
+  },
+  completionStatusIcon: {
+    color: theme.palette.success
   }
 }));
 
@@ -37,16 +42,16 @@ export default function Todo({
           <Avatar alt="Profile Picture" src={person} />
         </ListItemAvatar>
         <ListItemText primary={"TSTTST"} secondary={title} />
+        {done && (
+          <Typography variant="p" gutterBottom>
+            <CheckCircleIcon color="primary" /> {Date.now()}
+          </Typography>
+        )}
         <Switch
-        checked={done}
-        onChange={e => handleToggleTodo(id, !done)}
-        name="checkedA"
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-        <input
-          type="checkbox"
           checked={done}
           onChange={e => handleToggleTodo(id, !done)}
+          id="checkbox"
+          inputProps={{ "aria-label": "secondary checkbox" }}
         />
         <Button
           id="delete-button"

@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default class DigitalClock extends React.Component {
   constructor(props) {
     super();

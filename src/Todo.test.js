@@ -45,7 +45,7 @@ describe("AddTodo Test", () => {
     wrapper.unmount();
   });
 
-  it("should call mockFunction on button click", () => {
+  it("should call mockFunction on input click", () => {
     let mockHandleDeleteTodo = jest.fn();
     let mockHandleToggleTodo = jest.fn();
 
@@ -58,7 +58,7 @@ describe("AddTodo Test", () => {
       />
     );
     wrapper
-      .find("input")
+      .find("#checkbox")
       .first()
       .simulate("change", { value: 22 });
     expect(mockHandleToggleTodo).toHaveBeenCalled();
