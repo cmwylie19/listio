@@ -25,23 +25,43 @@ describe("AddTodo Test", () => {
     wrapper.unmount();
   });
 
-  //   it("should call mockFunction on button click", () => {
-  //     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
-  //     wrapper
-  //       .find("button")
-  //       .first()
-  //       .simulate("click");
-  //     expect(handleAddTodo).toHaveBeenCalled();
-  //     wrapper.unmount();
-  //   });
+  it("should call mockFunction on button click", () => {
+    let mockHandleDeleteTodo = jest.fn();
+    let mockHandleToggleTodo = jest.fn();
 
-  //   it("should call mockFunction on button click", () => {
-  //     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
-  //     console.log(JSON.stringify(wrapper));
-  //     wrapper
-  //       .find("input")
-  //       .first()
-  //       .simulate("keydown", { value: 22 });
-  //     wrapper.unmount();
-  //   });
+    const wrapper = shallow(
+      <Todo
+        title={title}
+        id={id}
+        handleToggleTodo={mockHandleToggleTodo}
+        handleDeleteTodo={mockHandleDeleteTodo}
+      />
+    );
+    wrapper
+      .find("button")
+      .first()
+      .simulate("click");
+    expect(mockHandleDeleteTodo).toHaveBeenCalled();
+    wrapper.unmount();
+  });
+
+  it("should call mockFunction on button click", () => {
+    let mockHandleDeleteTodo = jest.fn();
+    let mockHandleToggleTodo = jest.fn();
+
+    const wrapper = shallow(
+      <Todo
+        title={title}
+        id={id}
+        handleToggleTodo={mockHandleToggleTodo}
+        handleDeleteTodo={mockHandleDeleteTodo}
+      />
+    );
+    wrapper
+      .find("input")
+      .first()
+      .simulate("change", { value: 22 });
+    expect(mockHandleToggleTodo).toHaveBeenCalled();
+    wrapper.unmount();
+  });
 });

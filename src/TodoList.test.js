@@ -26,6 +26,20 @@ describe("TodoList Test", () => {
     wrapper.unmount();
   });
 
+  it("should mount", () => {
+    const wrapper = shallow(
+      <TodoList
+        title={title}
+        id={id}
+        todos={[{ id: 1 }, { id: 2 }]}
+        handleToggleTodo={handleToggleTodo}
+        handleDeleteTodo={handleDeleteTodo}
+      />
+    );
+    expect(wrapper).toBeDefined();
+    wrapper.unmount();
+  });
+
   //   it("should call mockFunction on button click", () => {
   //     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
   //     wrapper

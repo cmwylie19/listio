@@ -1,24 +1,64 @@
 import React, { useState } from "react";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Fab from "@material-ui/core/Fab";
+import MenuIcon from "@material-ui/icons/Menu";
+import AddIcon from "@material-ui/icons/Add";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+
+const useStyles = makeStyles(theme => ({
+  appBar: {
+    top: "auto",
+    bottom: 0
+  },
+  toolbar: {
+    display: "flex",
+    flex: 1,
+    width: "100%vw"
+  },
+  grow: {
+    flexGrow: 1
+  },
+  fabButton: {
+    position: "absolute",
+    zIndex: 1,
+    top: -30,
+    left: 0,
+    right: 0,
+    margin: "0 auto"
+  }
+}));
 
 const AddTodo = ({ handleAddTodo }) => {
   const [value, setValue] = useState("");
+  const classes = useStyles();
 
   return (
-    <>
-      <input
-        id="input"
-        type="text"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-      <button
-        type="button"
-        id="addtodo-button"
-        onClick={() => handleAddTodo(value)}
-      >
-        Add Todo
-      </button>
-    </>
+    <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <Toolbar className={classes.toolbar}>
+        <IconButton edge="start" color="inherit" aria-label="open drawer">
+          <MenuIcon />
+        </IconButton>
+        <Fab color="secondary" aria-label="add" className={classes.fabButton}>
+          <AddIcon id="addtodo-button" onClick={() => handleAddTodo(value)} />
+        </Fab>
+        <TextField
+          style={{ width: "90%", paddingBottom: "10px" }}
+          color="inherit"
+          id="input"
+          label="Input Task"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+        />
+        <div className={classes.grow} />
+        <IconButton edge="end" color="inherit">
+          <MoreIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   );
 };
 

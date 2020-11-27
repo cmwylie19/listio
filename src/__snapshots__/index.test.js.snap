@@ -2,13 +2,26 @@
 
 exports[` 1`] = `
 <Fragment>
+  <WithStyles(CssBaseline) />
+  <WithStyles(ForwardRef(Paper))
+    className="makeStyles-paper-2"
+    square={true}
+  >
+    <WithStyles(ForwardRef(Typography))
+      className="makeStyles-text-1"
+      gutterBottom={true}
+      variant="h5"
+    >
+      <DigitalClock />
+    </WithStyles(ForwardRef(Typography))>
+    <TodoList
+      handleDeleteTodo={[Function]}
+      handleToggleTodo={[Function]}
+      todos={Array []}
+    />
+  </WithStyles(ForwardRef(Paper))>
   <AddTodo
     handleAddTodo={[Function]}
-  />
-  <TodoList
-    handleDeleteTodo={[Function]}
-    handleToggleTodo={[Function]}
-    todos={Array []}
   />
 </Fragment>
 `;

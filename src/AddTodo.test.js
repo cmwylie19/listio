@@ -18,7 +18,7 @@ describe("AddTodo Test", () => {
   it("should call mockFunction on button click", () => {
     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
     wrapper
-      .find("button")
+      .find("#addtodo-button")
       .first()
       .simulate("click");
     expect(handleAddTodo).toHaveBeenCalled();
@@ -29,9 +29,9 @@ describe("AddTodo Test", () => {
     const wrapper = shallow(<AddTodo handleAddTodo={handleAddTodo} />);
     console.log(JSON.stringify(wrapper));
     wrapper
-      .find("input")
+      .find("#input")
       .first()
-      .simulate("keydown", { value: 22 });
+      .simulate("keydown", { target: { value: 22 } });
     wrapper.unmount();
   });
 });

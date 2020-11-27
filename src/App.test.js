@@ -1,5 +1,5 @@
 import App from "./App";
-import { shallow, mount } from "enzyme";
+import { shallow, render, mount } from "enzyme";
 
 describe("AddTodo Test", () => {
   it("should mount", () => {
