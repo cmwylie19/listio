@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Fab from "@material-ui/core/Fab";
@@ -41,9 +41,9 @@ const AddTodo = ({ handleAddTodo, themeToggle }) => {
   const [value, setValue] = useState("");
   const classes = useStyles();
 
-  useEffect(()=>{
-    inputRef.current.focus()
-  })
+  useEffect(() => {
+    inputRef.current.focus();
+  });
   return (
     <AppBar position="fixed" color="primary" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
@@ -69,10 +69,14 @@ const AddTodo = ({ handleAddTodo, themeToggle }) => {
           ref={inputRef}
           value={value}
           onChange={e => setValue(e.target.value)}
-          onKeyDown={e=>e.keyCode==13? handleAdd(
-            () => handleAddTodo(value),
-            () => setValue("")
-          ):""}
+          onKeyDown={e =>
+            e.keyCode == 13
+              ? handleAdd(
+                  () => handleAddTodo(value),
+                  () => setValue("")
+                )
+              : ""
+          }
         />
         <div className={classes.grow} />
         <IconButton edge="end" color="inherit">

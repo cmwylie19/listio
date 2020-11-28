@@ -56,7 +56,7 @@ export default function App({
     return fetchTodosFromDB(db).then(storedTodos => setTodos(storedTodos));
   }, [todos]);
 
-   /*istanbul ignore next*/
+  /*istanbul ignore next*/
   return (
     <>
       <CssBaseline />
@@ -85,7 +85,7 @@ export default function App({
             )}
           </Typography>
         </AppBar>
-       
+
         <TodoList
           todos={todos}
           handleToggleTodo={(id, done) =>
