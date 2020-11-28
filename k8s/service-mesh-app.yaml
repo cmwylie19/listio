@@ -1,16 +1,36 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: webapp
+#   labels:
+#     app: webapp
+#     service: webapp
+# spec:
+#   ports:
+#     - port: 3000
+#       name: http
+#   selector:
+#     app: webapp
+
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: webapp
   labels:
     app: webapp
-    service: webapp
+    tier: webapp
 spec:
+  # comment or delete the following line if you want to use a LoadBalancer
+  type: LoadBalancer
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
   ports:
-    - port: 3000
-      name: http
+  - port: 80
   selector:
     app: webapp
+    tier: webapp
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -27,7 +47,7 @@ metadata:
     app: webapp
     version: v1
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: webapp
@@ -49,7 +69,7 @@ spec:
           image: docker.io/cmwylie19/listo-webapp:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 3000
+            - containerPort: 80
 # ---
 # apiVersion: apps/v1
 # kind: Deployment
