@@ -69,7 +69,7 @@ spec:
           image: docker.io/cmwylie19/listo-webapp:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 80
+            - containerPort: 3000
 # ---
 # apiVersion: apps/v1
 # kind: Deployment
