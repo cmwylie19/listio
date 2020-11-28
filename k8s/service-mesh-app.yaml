@@ -1,98 +1,98 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-mesh
+  name: webapp
   labels:
-    app: service-mesh
-    service: service-mesh
+    app: webapp
+    service: webapp
 spec:
   ports:
     - port: 3000
       name: http
   selector:
-    app: service-mesh
+    app: webapp
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: sa-service-mesh
+  name: sa-webapp
   labels:
-    account: service-mesh
+    account: webapp
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service-mesh-v1
+  name: webapp-v1
   labels:
-    app: service-mesh
+    app: webapp
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: service-mesh
+      app: webapp
       version: v1
   template:
     metadata:
       labels:
-        app: service-mesh
+        app: webapp
         version: v1
     spec:
-      serviceAccountName: sa-service-mesh
+      serviceAccountName: sa-webapp
       containers:
         - env:
             - name: REACT_APP_TEST
               value: report-service
             - name: REACT_APP_THEME
               value: light
-          name: service-mesh
-          image: docker.io/cmwylie19/service-mesh:light
+          name: webapp
+          image: docker.io/cmwylie19/listo-webapp:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: service-mesh-v2
-  labels:
-    app: service-mesh
-    version: v2
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: service-mesh
-      version: v2
-  template:
-    metadata:
-      labels:
-        app: service-mesh
-        version: v2
-    spec:
-      serviceAccountName: sa-service-mesh
-      containers:
-        - env:
-            - name: REACT_APP_TEST
-              value: report-service
-            - name: REACT_APP_THEME
-              value: dark
-          name: service-mesh
-          image: docker.io/cmwylie19/service-mesh:dark
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 3000
----
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: service-mesh
-spec:
-  host: service-mesh
-  subsets:
-    - name: v1
-      labels:
-        version: v1
-    - name: v2
-      labels:
-        version: v2
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: service-mesh-v2
+#   labels:
+#     app: service-mesh
+#     version: v2
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: service-mesh
+#       version: v2
+#   template:
+#     metadata:
+#       labels:
+#         app: service-mesh
+#         version: v2
+#     spec:
+#       serviceAccountName: sa-service-mesh
+#       containers:
+#         - env:
+#             - name: REACT_APP_TEST
+#               value: report-service
+#             - name: REACT_APP_THEME
+#               value: dark
+#           name: service-mesh
+#           image: docker.io/cmwylie19/service-mesh:dark
+#           imagePullPolicy: Always
+#           ports:
+#             - containerPort: 3000
+# ---
+# apiVersion: networking.istio.io/v1alpha3
+# kind: DestinationRule
+# metadata:
+#   name: service-mesh
+# spec:
+#   host: service-mesh
+#   subsets:
+#     - name: v1
+#       labels:
+#         version: v1
+#     - name: v2
+#       labels:
+#         version: v2
