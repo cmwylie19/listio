@@ -4,6 +4,8 @@
 
 # Service Mesh
 
+_The live version in GKE can be viewed [here](http://35.243.153.166/)._
+
 ## After install is complete
 ```
 oc -n casewylie expose svc/istio-ingressgateway --port=http2
