@@ -11,6 +11,7 @@ import {
 } from "./actions";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { blue, grey } from "@material-ui/core/colors";
 
 export const Root = () => {
   const [prefersDarkMode, setPrefersDarkMode] = React.useState(true);
@@ -18,7 +19,15 @@ export const Root = () => {
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? "dark" : "light"
+          type: prefersDarkMode ? "dark" : "light",
+          secondary: {
+            main: blue[600]
+            // main: grey[900],
+          },
+          primary: {
+            main: grey[900]
+            //  main: blue[600],
+          }
         }
       }),
     [prefersDarkMode]

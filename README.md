@@ -1,16 +1,11 @@
 ![Node.js CI](https://github.com/cmwylie19/service-mesh/workflows/Node.js%20CI/badge.svg)    
 [![codecov](https://codecov.io/gh/cmwylie19/service-mesh/branch/master/graph/badge.svg?token=QOB0YLAC7G)](https://codecov.io/gh/cmwylie19/service-mesh)
 
-
-# Service Mesh
-
-_The live version in GKE can be viewed [here](http://35.243.153.166/)._
-
-## After install is complete
+# Deploy Cluster in GKE
 ```
-oc -n casewylie expose svc/istio-ingressgateway --port=http2
+gcloud beta container clusters create listio-cluster  --addons=Istio --istio-config=auth=MTLS_STRICT --c
+luster-version=1.16.13-gke.401    --machine-type=n1-standard-2     --num-nodes=3 --region=us-east1-b
 ```
-
 
 # Deployment on Google Kubernetes Engine
 

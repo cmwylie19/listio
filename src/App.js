@@ -13,11 +13,8 @@ const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(1, 1, 0),
     textAlign: "center"
-    // display:"flex",
-    // justifyContent: 'space-between'
   },
   paper: {
-    paddingBottom: 50,
     marginTop: 50
   },
   appBar: {

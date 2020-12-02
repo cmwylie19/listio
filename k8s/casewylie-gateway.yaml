@@ -1,45 +1,41 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: ig-casewylie
+  name: gateway-webapp
 spec:
   selector:
     istio: ingressgateway # use istio default controller
   servers:
-    - port:
-        number: 80
-        name: http
-        protocol: HTTP
-      hosts:
-        - "*"
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-casewylie
+  name: vs-webapp
 spec:
   hosts:
-    - "*"
+  - "*"
   gateways:
-    - ig-casewylie
+  - gateway-webapp
   http:
-    - match:
-        - uri:
-            exact: /light
-        - uri:
-            prefix: /static
-        - uri:
-            exact: /login
-      route:
-        - destination:
-            host: service-mesh
-            subset: v2
-            port:
-              number: 3000
-          weight: 50
-        - destination:
-            host: service-mesh
-            subset: v1
-            port:
-              number: 3000
-          weight: 50
+  - match:
+    - uri:
+        exact: /
+    # - uri:
+    #     prefix: /static
+    # - uri:
+    #     exact: /login
+    # - uri:
+    #     exact: /logout
+    # - uri:
+    #     prefix: /api/v1/products
+    route:
+    - destination:
+        host: webapp
+        port:
+          number: 80
