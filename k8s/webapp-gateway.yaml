@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: gateway-webapp
+  name: webapp-gateway
 spec:
   selector:
     istio: ingressgateway # use istio default controller
@@ -16,24 +16,16 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: vs-webapp
+  name: webapp
 spec:
   hosts:
   - "*"
   gateways:
-  - gateway-webapp
+  - webapp-gateway
   http:
   - match:
     - uri:
         exact: /
-    # - uri:
-    #     prefix: /static
-    # - uri:
-    #     exact: /login
-    # - uri:
-    #     exact: /logout
-    # - uri:
-    #     prefix: /api/v1/products
     route:
     - destination:
         host: webapp

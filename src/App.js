@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
 import Switch from "@material-ui/core/Switch";
-
+import Logo from './logo64.png'
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(1, 1, 0),
@@ -65,7 +65,7 @@ export default function App({
         >
           <Typography className={classes.text} variant="h5" gutterBottom>
             {!clock && (
-              <img src="logo64.png" height="45px" style={{ margin: "0px" }} />
+              <img src={Logo} height="45px" style={{ margin: "0px" }} />
             )}
             {clock && (
               <div
